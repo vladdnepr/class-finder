@@ -34,8 +34,8 @@ class BundleClassFinderTest extends ArrayContentsAssertion
     public function noKernelInitialisation()
     {
         $finder = new BundleClassFinder;
-        $this->assertAttributeInstanceOf('SplObjectStorage', 'bundles', $finder);
-        $this->assertAttributeCount(0, 'bundles', $finder);
+        $this->assertTrue($finder->getBundles() instanceof \SplObjectStorage);
+        $this->assertEquals(0, $finder->getBundles()->count());
     }
 
     /**
@@ -48,8 +48,8 @@ class BundleClassFinderTest extends ArrayContentsAssertion
     public function kernelInitialisation()
     {
         $finder = new BundleClassFinder($this->getBootedKernel());
-        $this->assertAttributeInstanceOf('SplObjectStorage', 'bundles', $finder);
-        $this->assertAttributeCount(1, 'bundles', $finder);
+        $this->assertTrue($finder->getBundles() instanceof \SplObjectStorage);
+        $this->assertEquals(1, $finder->getBundles()->count());
     }
 
     /**
@@ -66,18 +66,18 @@ class BundleClassFinderTest extends ArrayContentsAssertion
         $finder->setBundles([
             new TestBundle,
         ]);
-        $this->assertAttributeCount(1, 'bundles', $finder);
+        $this->assertEquals(1, $finder->getBundles()->count());
         // Test that adding bundles work.
         $finder->addBundle($bundle = new TestBundle);
-        $this->assertAttributeCount(2, 'bundles', $finder);
+        $this->assertEquals(2, $finder->getBundles()->count());
         // Test that adding the same instance of the bundle does not add duplicates.
         $finder->addBundle($bundle);
-        $this->assertAttributeCount(2, 'bundles', $finder);
+        $this->assertEquals(2, $finder->getBundles()->count());
         // Test that setting bundles resets what's already in BundleClassFinder.
         $finder->setBundles([
             new TestBundle,
         ]);
-        $this->assertAttributeCount(1, 'bundles', $finder);
+        $this->assertEquals(1, $finder->getBundles()->count());
     }
 
     /**

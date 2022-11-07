@@ -121,10 +121,10 @@ class ClassFinder implements ClassFinderInterface
     public function findClassReflections($subDir = null, $suffix = null, $parent = null, $allowedParameters = 0)
     {
         $classes = [];
-        $subDir = trim(preg_replace('#//{2,}#', '/', strtr($subDir, '\\', '/')), '/');
-        $namespace = trim($this->namespace, '\\') . '\\' . strtr($subDir, '/', '\\') . '\\';
+        $subDir = trim(preg_replace('#//{2,}#', '/', strtr($subDir ?? '', '\\', '/')), '/');
+        $namespace = trim($this->namespace, '\\') . '\\' . strtr($subDir ?? '', '/', '\\') . '\\';
         $finder = $this->directory !== null
-               && is_dir($directory = $this->directory . DIRECTORY_SEPARATOR . strtr($subDir, '/', DIRECTORY_SEPARATOR))
+               && is_dir($directory = $this->directory . DIRECTORY_SEPARATOR . strtr($subDir ?? '', '/', DIRECTORY_SEPARATOR))
             ? (new Finder)->files()->name(sprintf('*%s', $this->extension))->in($directory)
             : [];
         foreach ($finder as $file) {
@@ -146,7 +146,7 @@ class ClassFinder implements ClassFinderInterface
      * @param string $suffix
      * @param string $parent
      * @param integer $allowedParameters
-     * @return \Darsyn\ClassFinder\Reflection\Class|array
+     * @return \Darsyn\ClassFinder\Reflection\ReflectionClass|array
      */
     public function findClasses($subDir = null, $suffix = null, $parent = null, $allowedParameters = 0)
     {

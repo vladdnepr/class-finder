@@ -19,8 +19,10 @@ class TestKernel extends Kernel
      * @param string $environment
      * @param bool $debug
      */
-    public function __construct($environment = 'dev', $debug = true)
+    public function __construct(string $environment = 'dev', bool $debug = true)
     {
+        parent::__construct($environment, $debug);
+
         $this->environment = $environment;
         $this->debug = (bool) $debug;
     }
@@ -31,7 +33,7 @@ class TestKernel extends Kernel
      * @access public
      * @return array
      */
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return [
             new Bundle\TestBundle,
@@ -45,7 +47,7 @@ class TestKernel extends Kernel
      * @param \Symfony\Component\Config\Loader\LoaderInterface $loader
      * @return void
      */
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
     }
 
@@ -55,7 +57,7 @@ class TestKernel extends Kernel
      * @access public
      * @return string
      */
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return sys_get_temp_dir();
     }
@@ -66,7 +68,7 @@ class TestKernel extends Kernel
      * @access public
      * @return string
      */
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return sys_get_temp_dir();
     }

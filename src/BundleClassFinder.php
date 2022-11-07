@@ -81,4 +81,12 @@ class BundleClassFinder extends ClassFinder implements BundleAwareInterface
         }
         return $classes;
     }
+
+    /**
+     * @return \SplObjectStorage
+     */
+    public function getBundles(): \SplObjectStorage
+    {
+        return $this->bundles;
+    }
 }

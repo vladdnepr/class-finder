@@ -21,9 +21,9 @@ class ClassFinderTest extends ArrayContentsAssertion
     {
         $finder = new ClassFinder;
         $directory = __DIR__;
-        $this->assertAttributeEquals(null, 'directory', $finder);
+        $this->assertEquals(null, $finder->getRootDirectory());
         $this->assertEquals($finder, $finder->setRootDirectory($directory));
-        $this->assertAttributeEquals($directory, 'directory', $finder);
+        $this->assertEquals($directory, $finder->getRootDirectory());
         $this->assertEquals($directory, $finder->getRootDirectory());
     }
 
@@ -38,9 +38,8 @@ class ClassFinderTest extends ArrayContentsAssertion
     {
         $finder = new ClassFinder;
         $namespace = __NAMESPACE__;
-        $this->assertAttributeEquals(null, 'namespace', $finder);
+        $this->assertEquals(null, $finder->getRootNamespace());
         $this->assertEquals($finder, $finder->setRootNamespace($namespace));
-        $this->assertAttributeEquals($namespace, 'namespace', $finder);
         $this->assertEquals($namespace, $finder->getRootNamespace());
     }
 
@@ -54,15 +53,13 @@ class ClassFinderTest extends ArrayContentsAssertion
     public function extension()
     {
         $finder = new ClassFinder;
-        $this->assertAttributeEquals('.php', 'extension', $finder);
+        $this->assertEquals('.php', $finder->getExtension());
         $ext = '.txt';
         $this->assertEquals($finder, $finder->setExtension($ext));
-        $this->assertAttributeEquals($ext, 'extension', $finder);
         $this->assertEquals($ext, $finder->getExtension());
 
         $ext = 'txt';
         $finder->setExtension($ext);
-        $this->assertAttributeEquals('.' . $ext, 'extension', $finder);
         $this->assertEquals('.' . $ext, $finder->getExtension());
     }
 
@@ -76,7 +73,7 @@ class ClassFinderTest extends ArrayContentsAssertion
     public function nonExistentDirectory()
     {
         $finder = new ClassFinder;
-        $this->setExpectedException('DomainException');
+        $this->expectException('DomainException');
         $finder->setRootDirectory(__DIR__ . '/non/existent/directory');
     }
 

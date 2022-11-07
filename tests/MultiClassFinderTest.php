@@ -33,7 +33,7 @@ class MultiClassFinderTest extends ArrayContentsAssertion
     public function initialisation()
     {
         $finder = new MultiClassFinder;
-        $this->assertAttributeCount(0, 'locations', $finder);
+        $this->assertCount(0,  $finder->getLocations());
     }
 
     /**
@@ -46,7 +46,7 @@ class MultiClassFinderTest extends ArrayContentsAssertion
     public function constructorLocations()
     {
         $finder = new MultiClassFinder($this->getLocations());
-        $this->assertAttributeCount(2, 'locations', $finder);
+        $this->assertCount(2,  $finder->getLocations());
     }
 
     /**
@@ -59,9 +59,9 @@ class MultiClassFinderTest extends ArrayContentsAssertion
     public function setLocations()
     {
         $finder = new MultiClassFinder;
-        $this->assertAttributeCount(0, 'locations', $finder);
+        $this->assertCount(0,  $finder->getLocations());
         $finder->setLocations($this->getLocations());
-        $this->assertAttributeCount(2, 'locations', $finder);
+        $this->assertCount(2,  $finder->getLocations());
     }
 
     /**
@@ -77,11 +77,11 @@ class MultiClassFinderTest extends ArrayContentsAssertion
         $locations = $this->getLocations();
         $i = 0;
         foreach ($locations as $namespace => $location) {
-            $this->assertAttributeCount($i, 'locations', $finder);
+            $this->assertCount($i,  $finder->getLocations());
             $finder->addLocation($namespace, $location);
             $i++;
         }
-        $this->assertAttributeCount(count($locations), 'locations', $finder);
+        $this->assertCount(count($locations),  $finder->getLocations());
     }
 
     /**

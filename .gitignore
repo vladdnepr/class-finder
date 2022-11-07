@@ -1,6 +1,7 @@
 /.idea/
 /vendor/
 /build/
+.phpunit.result.cache
 
 # This is never intended to be a top-level project, so don't commit Composer's lock file.
 # See: https://philsturgeon.uk/php/2014/11/04/composer-its-almost-always-about-the-lock-file

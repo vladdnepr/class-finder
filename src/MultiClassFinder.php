@@ -55,6 +55,14 @@ class MultiClassFinder extends ClassFinder implements MultiClassFinderInterface
     }
 
     /**
+     * @return array
+     */
+    public function getLocations(): array
+    {
+        return $this->locations;
+    }
+
+    /**
      * Find Classes
      *
      * @access public

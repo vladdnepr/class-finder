@@ -3,17 +3,18 @@
 namespace Darsyn\ClassFinder\Tests\Reflection;
 
 use Darsyn\ClassFinder\Reflection\ReflectionClass;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Zander Baldwin <hello@zanderbaldwin.com>
  */
-class ReflectionClassTest extends \PHPUnit_Framework_TestCase
+class ReflectionClassTest extends TestCase
 {
     public function testInitialization()
     {
         $reflect = new ReflectionClass(__CLASS__, '');
         $this->assertInstanceOf('\\ReflectionClass', $reflect);
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
         $reflect = new ReflectionCLass(__CLASS__, null);
     }
 

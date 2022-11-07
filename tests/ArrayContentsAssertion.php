@@ -1,12 +1,14 @@
 <?php
 namespace Darsyn\ClassFinder\Tests;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Array Contents Assertion
  *
  * @author Zander Baldwin <hello@zanderbaldwin.com>
  */
-class ArrayContentsAssertion extends \PHPUnit_Framework_TestCase
+class ArrayContentsAssertion extends TestCase
 {
     /**
      * Asserts that two arrays have the same contents as each other, without the order (keys) being of importance.
